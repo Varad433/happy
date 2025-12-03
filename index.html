@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday Collage</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #eef7ff;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+    }
+
+    .collage-page {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(to bottom right, #c5e4ff, #e2f0ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        flex-direction: column;
+    }
+
+    .collage-grid {
+        width: 90%;
+        height: 70%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .collage-grid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .next-btn {
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: #4aa8ff;
+        color: white;
+        border-radius: 10px;
+        font-size: 18px;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .heart {
+        position: absolute;
+        top: -10px;
+        font-size: 24px;
+        animation: fall linear infinite;
+        color: #ff6fa8;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="collage-page" id="page1">
+    <div class="collage-grid">
+        <img src="photo1.jpg" />
+        <img src="photo2.jpg" />
+        <img src="photo3.jpg" />
+        <img src="photo4.jpg" />
+        <img src="photo5.jpg" />
+        <img src="photo6.jpg" />
+        <img src="photo7.jpg" />
+    </div>
+
+    <a class="next-btn" href="page2.html">Next ➜</a>
+</div>
+
+<script>
+// Heart rain
+function createHearts() {
+    const page = document.getElementById("page1");
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+        page.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }, 200);
+}
+createHearts();
+</script>
+
+</body>
+</html>
